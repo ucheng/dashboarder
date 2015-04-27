@@ -66,7 +66,7 @@ $args = array(
 	'page_priority' => null,
 	// Order where the menu appears in the admin area. If there is any conflict, something will not show. Warning.
 	// 'page_parent'          => 'themes.php',
-	'page_parent' => 'db-widgets',
+	'page_parent' => 'db-index',
 	// For a full list of options, visit: http://codex.wordpress.org/Function_Reference/add_submenu_page#Parameters
 	'page_permissions' => 'manage_options',
 	// Permissions needed to access the options panel.

@@ -7,6 +7,12 @@ class Admin_Menu {
 	public function __construct() {
 		// define our screens
 		$this->screens = array(
+			'db-index' => array(
+				'page_title' => __('Dashboarder'),
+				'menu_title' => __('Dashboarder'),
+				'callback' => 'index_page', // note that this has to be a class method
+				'hookname' => null,
+			),
 			'db-widgets' => array(
 				'page_title' => __('Widgets'),
 				'menu_title' => __('Widgets'),
@@ -31,15 +37,15 @@ class Admin_Menu {
 	}
 
 	public function create_menu() {
-		$this->hookname = add_menu_page('WordPress Dashboarder', 'Dashboarder', 'read', 'db-widgets', array($this, 'widgets_page'));
+		$this->hookname = add_menu_page('WordPress Dashboarder', 'Dashboarder', 'read', 'db-index', array($this, 'index_page'));
 
 		foreach ($this->screens as $slug => $args) {
-			$this->screens[$slug]['hookname'] = add_submenu_page('db-widgets', $args['page_title'], $args['menu_title'], 'read', $slug, array($this, $args['callback']));
+			$this->screens[$slug]['hookname'] = add_submenu_page('db-index', $args['page_title'], $args['menu_title'], 'read', $slug, array($this, $args['callback']));
 		}
 	}
 
-	public function jquery_ui() {
-		// include_once 'admin/pages/widgets.php';
+	public function index_page() {
+		include_once(plugin_dir_path(__FILE__) . '../admin/pages/dashboarder-index.html');
 	}
 
 	public function  widgets_page() {
